@@ -148,17 +148,20 @@ class SnakeGame:
         print(f"SCORE: {self.score} | LENGTH: {self.score + 5} | SPEED: {self.calculate_speed()}ms")
         print("Use WASD to control, ESC to exit")
         print("=" * 85)
+        print("\033[47m  " *87 + "\033[0m")
 
         for row in self.game_zone:
-            line = ""
+            line = "\033[47m  "
             for cell in row:
-                if cell > 0:  # Часть тела змеи
-                    line += "🟩"
+                if cell > 0:  # Змея
+                    line += "\033[42m  \033[0m"
                 elif cell == -1:  # Еда
-                    line += "🟥"
-                else:  # Пустота
-                    line += "⬛"
+                    line += "\033[41m  \033[0m"
+                else:  # Пустое поле
+                    line += "\033[40m  \033[0m"
+            line += "\033[47m  \033[0m"
             print(line)
+        print("\033[47m  " *87 + "\033[0m")
 
     def input_thread(self):
         listener = KeyboardControl()
